@@ -1,6 +1,12 @@
-{exec} = require 'child_process'
+{exec}  = require 'child_process'
+fs      = require 'fs'
 
-task 'scss', 'convert scss to css into bin/', ->
-	exec 'node-sass src/scss/ bin/css/', (err, stdout, stderr) ->
+task 'scss', 'convert scss to css into bin/css/', ->
+    fs.readdir 'src/scss', ( err, files ) ->
         throw err if err
-        console.log stdout + stderr
+        scssfiles = files.filter ( s ) -> s.match /^[^_].*\.scss$/
+        convert file for file in scssfiles
+    convert = ( file ) ->
+        com = 'node-sass src/scss/' + file + ' --output bin/css/'
+        exec com, ( err, stdout, stderr ) ->
+            console.error stderr if err
