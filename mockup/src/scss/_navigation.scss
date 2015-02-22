@@ -1,4 +1,4 @@
-$navheight: 40px;
+$navheight: 45px;
 
 nav {
 	position: fixed;
@@ -6,6 +6,36 @@ nav {
 	top: 0;
 	right: 0;
 	height: $navheight;
-	backhgound-color: $grey;
+	background-color: $grey;
+	padding: 5px 10px;
+	box-sizing: border-box;
+	z-index: 9001;
+
+	.logo {
+		color: $white;
+		font-family: $tex-font;
+		font-size: 30px;
+		padding: 1px 0 4px 0;
+	}
+
+	.threebars {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: $navheight;
+		width: 40px;
+		text-align: center;
+
+		div {
+			position: absolute;
+			top: 5px;
+			border-bottom: 14px double $white; 
+			border-top: 5px solid $white; 
+			content:"";
+			height: 5px; 
+			width:30px;
+			margin: 5px 0;
+		}
+	}
 
 }

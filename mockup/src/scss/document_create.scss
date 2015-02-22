@@ -9,9 +9,23 @@ body, html {
 }
 
 #left {
-	background-color: #F00;
+	background-color: #999;
+	position: fixed;
+	left: 0;
+	height: 100%;
+	width: 50%;
+	margin: 0;
+	padding: 0;
 }
 
 #right {
-	background-color: #00F;
+	background-color: $white;
+	padding: $navheight 20px 5px 20px;
+	box-sizing: border-box;
+	position: fixed;
+	right: 0;
+	height: 100%;
+	width: 50%;
+	margin: 0;
+	padding: 0;
 }
