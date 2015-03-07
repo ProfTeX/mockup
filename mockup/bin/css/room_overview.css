@@ -4,7 +4,7 @@ nav {
   top: 0;
   right: 0;
   height: 45px;
-  background-color: #101010;
+  background-color: #999;
   padding: 5px 10px;
   box-sizing: border-box;
   z-index: 9001; }
@@ -54,18 +54,18 @@ button {
   text-overflow: clip;
   background-color: #101010; }
 
-a.button:link {
+a.button link {
   font-weight: normal;
   text-decoration: none; }
-a.button:visited {
+a.button visited {
   font-weight: normal;
   text-decoration: none; }
-a.button:focus {
+a.button focus {
   font-weight: normal;
   text-decoration: none; }
-a.button:hover {
+a.button hover {
   font-weight: normal;
   text-decoration: none; }
-a.button:active {
+a.button active {
   font-weight: normal;
   text-decoration: none; }
