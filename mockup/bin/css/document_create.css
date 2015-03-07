@@ -4,7 +4,7 @@ nav {
   top: 0;
   right: 0;
   height: 45px;
-  background-color: #999;
+  background-color: #101010;
   padding: 5px 10px;
   box-sizing: border-box;
   z-index: 9001; }
@@ -37,22 +37,69 @@ body, html {
   height: 100%;
   background-color: #999; }
 
-#left {
-  background-color: #999;
-  position: fixed;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  margin: 0;
-  padding: 0; }
-
-#right {
-  background-color: #F0F0F0;
-  padding: 45px 20px 5px 20px;
-  box-sizing: border-box;
-  position: fixed;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  margin: 0;
-  padding: 0; }
+#content {
+  position: absolute;
+  top: 41px; }
+  #content #left {
+    background-color: #999;
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    margin: 0;
+    padding: 0; }
+  #content #right {
+    background-color: #F0F0F0;
+    padding: 45px 20px 5px 20px;
+    box-sizing: border-box;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    margin: 0;
+    padding: 30px 30px 30px 40px; }
+    #content #right > * {
+      max-width: 700px; }
+    #content #right form {
+      display: none;
+      border-radius: 5px;
+      border: 2px solid #101010;
+      max-width: 670px;
+      padding: 0 10px; }
+      #content #right form div {
+        margin: 10px 0px; }
+        #content #right form div input {
+          width: 90%;
+          float: right; }
+        #content #right form div textarea {
+          width: 100%;
+          height: 100px; }
+    #content #right .chapter-heading {
+      font: bold 36px Arial, sans-serif; }
+    #content #right .chapter-subheading {
+      font: bold 24px Arial, sans-serif; }
+    #content #right .new-element button {
+      width: 48%; }
+      #content #right .new-element button.chapter {
+        float: left; }
+      #content #right .new-element button.block {
+        float: right; }
+  #content button {
+    font: bold 20px;
+    text-align: center;
+    cursor: pointer;
+    padding: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border: 0px;
+    border-radius: 5px;
+    color: #F0F0F0;
+    font-family: TeX, serif;
+    font-size: 20px;
+    color: #F0F0F0;
+    background-color: #101010;
+    margin: 2px; }
+    #content button#pdf {
+      position: fixed;
+      bottom: 0;
+      right: 0; }
