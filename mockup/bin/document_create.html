@@ -49,19 +49,23 @@
             editor.show();
             
             if(e.attr('data-title')) {
-                $('.block-title').val( e.attr('data-title') );
+                $('.block-title').val( e.data('title') );
                 $('.block-text').val( e.html() );
-                $('.block-tags').val( e.attr('data-tags') );
+                $('.block-tags').val( e.data('tags') );
                 
                 e.remove();
+            } else {
+                $('.block-title').val('');
+                $('.block-text').val('');
+                $('.block-tags').val('');
             }
         }
         
         function accept() {
             var newBlock = $('<p>');
 
-            newBlock.attr('data-title', $('.block-title').val());
-            newBlock.attr('data-tags', $('.block-tags').val());
+            newBlock.data('title', $('.block-title').val());
+            newBlock.data('tags', $('.block-tags').val());
             newBlock.html( $('.block-text').val() );
 
             newBlock.click( editBlock );
