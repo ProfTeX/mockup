@@ -1,8 +1,13 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
         <title>ProfTeX - Dokument bearbeiten</title>
         <link rel="stylesheet" type="text/css" href="css/document_create.css">
+	<link rel="stylesheet" href="css/katex.min.css">
+	<script src="js/katex.min.js"></script>
+	<script src="js/pdf.js"></script>
+
     </head>
     <nav>
         <div class="logo">ProfTeX</div>
@@ -35,9 +40,18 @@
                 <button class="block">Neuer Block</button>
             </div>
             
-            <button id="pdf">PDF anzeigen</button>
-            
+            <button id="pdf" onclick="showpdf()">PDF anzeigen</button>
+	    <div class="pdf-div" style="padding: 2em;display: none;">
+	      <div class="pdf-content">
+		<div class="chapter-heading">1. Das ist eine Überschrift</div>
+                <div class="chapter-subheading">1.1 Das ist eine Unterüberschrift</div>
+		<br />
+		<div class="pdf-render"></div>
+	      </div>
+	      <button id="closepdf" onclick="closepdf()">Close PDF</button>
+	    </div>            
         </div>
+
     </div>
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type = "text/javascript">

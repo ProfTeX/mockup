@@ -1,0 +1,6 @@
+function showpdf()
+{
+    var renderstr = 'c = \\pm\\sqrt{a^2 + b^2}';
+
+    katex.render(renderstr, $('.pdf-render')[0]);
+}
