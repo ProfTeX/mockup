@@ -10,59 +10,77 @@
     </nav>
     <div id="content">
         <div id="left">
+            <img src="beispiel.jpg" />
+            <img src="beispiel.jpg" />
+            <img src="beispiel.jpg" />
+            <img src="beispiel.jpg" />
         </div>
         <div id="right">
-            <div id="document">
+            <div id="doc">
                 <div class="chapter-heading">1. Das ist eine Überschrift</div>
                 <div class="chapter-subheading">1.1 Das ist eine Unterüberschrift</div>
 
-                <p data-title="Lorem ipsum" data-tags="beweis, vl1" onclick="editBlock(this)">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <p data-title="Lorem ipsum" data-tags="beweis, vl1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
             
-            <form name="new-block" id="new-block">
+            <div id="new-block">
                 <div><label for="title">Titel:</label><input type="text" name="title" class="block-title" /><br /></div>
                 <div><label for="desc">Beschreibung:</label><br />
                 <textarea name="desc" class="block-text"></textarea></div>
                 <div><label for="tags">Tags:</label><input type="text" name="tags" class="block-tags" placeholder="definition, beispiel, lösung, übung, vl1"/></div>
                 <button id="submit">Übernehmen</button>
-            </form>
+            </div>
             <div class="new-element">
                 <button class="chapter">Neues Kapitel</button>
-                <button class="block" onclick="editBlock(this);">Neuer Block</button>
+                <button class="block">Neuer Block</button>
             </div>
             
             <button id="pdf">PDF anzeigen</button>
             
         </div>
     </div>
+    <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type = "text/javascript">
-        function editBlock(e) {
-            var editor = document.getElementById('new-block');
+        var doc = $('#doc'),
+            editor = $('#new-block');
+
+        function editBlock() {
+            e = $( this );          
+            editor.show();
             
-            editor.style.display='block';
-            
-            if(e.getAttribute('data-title') !== null) {
-                editor.getElementsByClassName('block-title')['0'].setAttribute('value', e.getAttribute('data-title'));
-                editor.getElementsByClassName('block-text')['0'].innerHTML = e.innerHTML;
-                editor.getElementsByClassName('block-tags')['0'].setAttribute('value', e.getAttribute('data-tags'));
+            if(e.attr('data-title')) {
+                $('.block-title').val( e.attr('data-title') );
+                $('.block-text').val( e.html() );
+                $('.block-tags').val( e.attr('data-tags') );
                 
-                e.style.display='none';
+                e.remove();
             }
         }
         
         function accept() {
-            var editor = document.getElementById('new-block');
-            var doc = document.getElementById('document');
-            
-            var newBlock = document.createElement('p');
-            doc.appendChild(newBlock);
-            console.log(doc.lastChild);
-            newBlock = doc.lastChild;
-            
-            newBlock.setAttribute('data-title', editor.getElementsByClassName('block-title')['0'].getAttribute('value'))
-                    .setAttribute('data-tags', editor.getElementsByClassName('block-tags')['0'].getAttribute('value'));
-            newBlock.innerHTML = editor.getElementsByClassName('block-text')['0'].innerHTML;
-            console.log(newBlock);
+            var newBlock = $('<p>');
+
+            newBlock.attr('data-title', $('.block-title').val());
+            newBlock.attr('data-tags', $('.block-tags').val());
+            newBlock.html( $('.block-text').val() );
+
+            newBlock.click( editBlock );
+
+            doc.append(newBlock);
+
+            editor.hide();
         }
+
+        $('#left > img').click(function() {
+            $( this ).toggleClass('big');
+        });
+
+        $('#new-block > button').click( accept );
+
+        $('#doc p').click( editBlock );
+
+        $('.block').click(function() {
+            editBlock.call( null );
+        });
     </script>
 </html>
