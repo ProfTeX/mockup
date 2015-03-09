@@ -54,18 +54,18 @@ button {
   text-overflow: clip;
   background-color: #101010; }
 
-a.button link {
+a.button:link {
   font-weight: normal;
   text-decoration: none; }
-a.button visited {
+a.button:visited {
   font-weight: normal;
   text-decoration: none; }
-a.button focus {
+a.button:focus {
   font-weight: normal;
   text-decoration: none; }
-a.button hover {
+a.button:hover {
   font-weight: normal;
   text-decoration: none; }
-a.button active {
+a.button:active {
   font-weight: normal;
   text-decoration: none; }

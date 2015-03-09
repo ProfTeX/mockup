@@ -28,9 +28,9 @@ button {
 }
 
 a.button{
-	link { font-weight:normal; text-decoration:none; }
-	visited { font-weight:normal; text-decoration:none; }
-	focus { font-weight:normal; text-decoration:none; }
-	hover { font-weight:normal; text-decoration:none; }
-	active { font-weight:normal; text-decoration:none; }
+	&:link { font-weight:normal; text-decoration:none; }
+	&:visited { font-weight:normal; text-decoration:none; }
+	&:focus { font-weight:normal; text-decoration:none; }
+	&:hover { font-weight:normal; text-decoration:none; }
+	&:active { font-weight:normal; text-decoration:none; }
 }
