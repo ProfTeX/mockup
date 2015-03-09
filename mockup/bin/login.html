@@ -28,8 +28,8 @@ var un = document.loginform.username.value;
 var pw = document.loginform.pword.value;
 var valid = false;
 
-var unArray = ["Marco"];
-var pwArray = ["SuperPW"];
+var unArray = ["Marco", "Penis", "Edwin"];
+var pwArray = ["SuperPW", "penis", ""];
 
 for (var i=0; i <unArray.length; i++) {
 	if ((un == unArray[i]) && (pw == pwArray[i])) {
@@ -40,7 +40,7 @@ for (var i=0; i <unArray.length; i++) {
 
 if (valid) {
 	alert ("Login successful");
-	window.location = "http://www.dhbw-mannheim.de";
+	window.location = "room_overview.html";
 	return false;
 }
 
