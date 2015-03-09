@@ -4,9 +4,12 @@ fs      = require 'fs'
 task 'scss', 'convert scss to css into bin/css/', ->
     fs.readdir 'src/scss', ( err, files ) ->
         throw err if err
-        scssfiles = files.filter ( s ) -> s.match /^[^_].*\.scss$/
-        convert file for file in scssfiles
+        convert file for file in files when file.match /^[^_].*\.scss$/
     convert = ( file ) ->
         com = 'node-sass src/scss/' + file + ' --output bin/css/'
         exec com, ( err, stdout, stderr ) ->
             console.error stderr if err
+
+task 'coffee', 'convert cs to js into bin/js/', ->
+	exec 'coffee -c -o src/coffee/ bin/js/', ( err, stdout, stderr ) ->
+        console.error stderr if err
