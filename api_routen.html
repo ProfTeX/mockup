@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+body {
+    font-family: "Courier New";
+    background-color: #222222;
+}
+
+.group {
+    width: 800px;
+    margin: 10px auto;
+    background-color: #333333;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+.point {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.method {
+    font-weight: bold;
+    color: #19B5FE;
+    margin: 5px;
+    width: 40px;
+}
+
+.route {
+    color: #F8F8F8;
+    margin: 5px;
+}
+
+.return {
+    color: #DB0A5B;
+    margin: 5px;
+}
+
+.param {
+    background-color: #555555;
+    color: #E67E22;
+    padding: 0 3px;
+    border-radius: 2px;
+}
+
+.params {
+    color: #2ECC71;
+    margin-left: 30px;
+}
+
+.def {
+    color: #DB0A5B;
+    margin-left: 30px;
+}
+
+.decl {
+    color: #F5AB35;
+    margin: 0 5px 0 60px;
+}
+
+.arrof {
+    color: #F8F8F8;
+    margin: 5px;
+    margin-right: 0;
+}
+        </style>
+    <script>
+function onL() {
+    var bod = document.querySelector('body');
+
+    function parseMethod( string ) {
+        var curr = string.split(' ');
+        if (curr )
+        return '<div class="group"><div class="point"><span class="method">' + curr.shift() + '</span><span class="route">' +
+               curr.shift().replace(/\{([a-z]*)\}/g, '{<span class="param">$1</span>}') +
+               '</span>' + parseReturn( curr ) + '</div>';
+    }
+
+    function parseDefinition( string ) {
+        if ( string === 'Params:') {
+            return '<div class="point"><span class="params">' + string + '</span></div>';
+        }
+        return '<div class="point"><span class="def">' + string + '</span></div>';
+    }
+
+    function parseDeclaration( string ) {
+        var curr = string.split(' ');
+        return '<div class="point"><span class="decl">' + curr.shift() + '</span>' +
+               parseReturn( curr ) + '</div>';
+    }
+
+    function parseReturn( arr ) {
+        var i,
+            ret = '<span class="arrof">';
+        if ( arr.length === 1 ) {
+            return '<span class="return">' + arr[0] + '</span>';
+        } else {
+            for (i = 0; i < arr.length; ++i) {
+                if (i + 1 === arr.length) {
+                    ret += '</span><span class="return">' + arr[i] + '</span>'
+                } else {
+                    ret += arr[i] + ' ';
+                }
+            }
+        }
+        return ret;
+    }
+
+    bod.innerHTML = bod.innerHTML.split('\n').reduce(function(p, c) {
+        if (c.length < 3) return p;
+        if (c.substr(0, 2) === '  ') {
+            if (c.substr(0, 4) === '    ') {
+                return p + parseDeclaration( c.substr(4) );
+            }
+            return p + parseDefinition( c.substr(2) );
+        }
+        if (p !== '') {
+            p = p + '</div>'
+        }
+        return p + parseMethod( c );
+    }) + '</div>';
+}
+    </script>
+</head>
+<body onload="onL()">
+GET image/{room} Array of :Image
+  Image:
+    id :int
+    url :string
+
+PUT image/ :bool
+  Params:
+    image :ImageFile
+    room_id :int
+
+DELETE image/ :bool
+  Params:
+    id :int
+
+GET pdf/ :string (URL)
+  Params:
+    snippets Array of :int (IDs)
+
+GET snippet/ Array of :Snippet
+  Params:
+    tags Array of :string optional
+    room :int optional
+    ids Array of :int (Snippet-IDs)
+  Snippet:
+    title :string
+    content :string
+    tags Array of :Tag
+
+PUT snippet/ :bool
+  Params:
+    title :string
+    content :string
+    tags Array of :int (IDs)
+
+POST snippet/ :bool
+  Params:
+    title :string
+    content :string
+    tags Array of :int (IDs)
+
+DELETE snippet/{id} :bool
+
+PUT room/ :bool
+  Params:
+    name :string
+    course :string
+    description :string
+    chapters Array of :Chapter
+
+GET room/ (Array of) :Room
+  Params:
+    id :int optional
+  Room:
+    name :string
+    course :string
+    description :string
+    chapters Array of :Chapter
+
+DELETE room/{id} :bool
+
+PUT chapter/ :bool
+  Params:
+    name :string
+    room :int
+    snippets Array of :Snippet optional
+
+POST chapter/ :bool
+  Params:
+    name :string
+    snippets Array of :Snippet optional
+    room :int
+
+DELETE chapter/{id} :bool
+
+</body>
+</html>
