@@ -23,7 +23,7 @@ USE `proftex` ;
 DROP TABLE IF EXISTS `proftex`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `proftex`.`User` (
-  `ID` INT NOT NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(200) NOT NULL,
   `Email` VARCHAR(200) NOT NULL,
   `Password` VARCHAR(300) NOT NULL,
@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `proftex`.`Room` ;
 
 CREATE TABLE IF NOT EXISTS `proftex`.`Room` (
-  `ID` INT NOT NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(200) NOT NULL,
   `Course` VARCHAR(100) NULL,
   `Description` TEXT NULL,
@@ -53,7 +53,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `proftex`.`Snippet` ;
 
 CREATE TABLE IF NOT EXISTS `proftex`.`Snippet` (
-  `ID` INT NOT NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `Title` VARCHAR(150) NOT NULL,
   `Content` TEXT NOT NULL,
   `created_at` DATETIME NOT NULL,
@@ -68,7 +68,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `proftex`.`Tag` ;
 
 CREATE TABLE IF NOT EXISTS `proftex`.`Tag` (
-  `ID` INT NOT NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(40) NOT NULL,
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NULL,
@@ -83,7 +83,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `proftex`.`Chapter` ;
 
 CREATE TABLE IF NOT EXISTS `proftex`.`Chapter` (
-  `ID` INT NOT NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(150) NOT NULL,
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NULL,
