@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `proftex`.`Snippet` (
   `Content` TEXT NOT NULL,
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NULL,
+  `Position` INT NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB;
 
@@ -88,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `proftex`.`Chapter` (
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NULL,
   `Room_ID` INT NOT NULL,
+  `Position` INT NOT NULL,
   PRIMARY KEY (`ID`),
   INDEX `fk_Chapter_Room1_idx` (`Room_ID` ASC),
   CONSTRAINT `fk_Chapter_Room1`
