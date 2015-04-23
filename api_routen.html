@@ -138,63 +138,79 @@ DELETE image/ :bool
   Params:
     id :int
 
-GET pdf/ :string (URL)
+GET pdf/ :HTML (object-Tag für PDF)
   Params:
-    snippets Array of :int (IDs)
+    ids Array of :int (snippetIDs)
 
 GET snippet/ Array of :Snippet
   Params:
-    tags Array of :string optional
-    room :int optional
-    ids Array of :int (Snippet-IDs)
+    room :int
+    tags Array of :string optional (Tag-Namen)
+    ids Array of :int optional (Snippet-IDs)
   Snippet:
+    id :int
     title :string
     content :string
     tags Array of :Tag
+    position :int
 
-PUT snippet/ :bool
+PUT snippet/ :Snippet
   Params:
     title :string
     content :string
-    tags Array of :int (IDs)
+    tags Array of :string
+    position :int
 
 POST snippet/ :bool
   Params:
-    title :string
-    content :string
-    tags Array of :int (IDs)
+    id :int
+    title :string optional
+    content :string optional
+    tags Array of :string optional
+    position :int optional
 
 DELETE snippet/{id} :bool
 
-PUT room/ :bool
+PUT room/ :Room
   Params:
     name :string
     course :string
     description :string
-    chapters Array of :Chapter
 
-GET room/ (Array of) :Room
+GET room/ :Room
   Params:
-    id :int optional
+    id :int
   Room:
     name :string
     course :string
     description :string
     chapters Array of :Chapter
 
+POST room/ :boolean
+  Params:
+    id :int
+    name :string optional
+    course :string optional
+    description :string optional
+    add_user :int optional (User-ID)
+    rem_user :int optional (User-ID)
+
 DELETE room/{id} :bool
 
-PUT chapter/ :bool
+PUT chapter/ :Chapter
   Params:
     name :string
+    position :int
     room :int
-    snippets Array of :Snippet optional
 
 POST chapter/ :bool
   Params:
-    name :string
-    snippets Array of :Snippet optional
-    room :int
+    id :int
+    name :string optional
+    position :int optional
+    room :int optional
+    add_snippet :int optional (Snippet-ID)
+    rem_snippet :int optional (Snippet-ID)
 
 DELETE chapter/{id} :bool
 
