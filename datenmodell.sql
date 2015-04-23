@@ -162,37 +162,37 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `proftex`.`Group`
+-- Table `proftex`.`Role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `proftex`.`Group` ;
+DROP TABLE IF EXISTS `proftex`.`Role` ;
 
-CREATE TABLE IF NOT EXISTS `proftex`.`Group` (
+CREATE TABLE IF NOT EXISTS `proftex`.`Role` (
   `Email` VARCHAR(200) NOT NULL,
-  `Group` VARCHAR(45) NULL,
+  `Role` VARCHAR(45) NULL,
   PRIMARY KEY (`Email`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `proftex`.`User_has_Group`
+-- Table `proftex`.`User_has_Role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `proftex`.`User_has_Group` ;
+DROP TABLE IF EXISTS `proftex`.`User_has_Role` ;
 
-CREATE TABLE IF NOT EXISTS `proftex`.`User_has_Group` (
+CREATE TABLE IF NOT EXISTS `proftex`.`User_has_Role` (
   `User_ID` INT NOT NULL,
-  `Group_Email` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`User_ID`, `Group_Email`),
-  INDEX `fk_User_has_Group_Group1_idx` (`Group_Email` ASC),
-  INDEX `fk_User_has_Group_User1_idx` (`User_ID` ASC),
-  CONSTRAINT `fk_User_has_Group_User1`
+  `Role_Email` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`User_ID`, `Role_Email`),
+  INDEX `fk_User_has_Role_Role1_idx` (`Role_Email` ASC),
+  INDEX `fk_User_has_Role_User1_idx` (`User_ID` ASC),
+  CONSTRAINT `fk_User_has_Role_User1`
     FOREIGN KEY (`User_ID`)
     REFERENCES `proftex`.`User` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_User_has_Group_Group1`
-    FOREIGN KEY (`Group_Email`)
-    REFERENCES `proftex`.`Group` (`Email`)
+  CONSTRAINT `fk_User_has_Role_Role1`
+    FOREIGN KEY (`Role_Email`)
+    REFERENCES `proftex`.`Role` (`Email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
