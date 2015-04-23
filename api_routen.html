@@ -160,6 +160,7 @@ PUT snippet/ :Snippet
     content :string
     tags Array of :string
     position :int
+    chapter :int
 
 POST snippet/ :bool
   Params:
@@ -168,6 +169,7 @@ POST snippet/ :bool
     content :string optional
     tags Array of :string optional
     position :int optional
+    chapter :int
 
 DELETE snippet/{id} :bool
 
